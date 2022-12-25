@@ -12,12 +12,15 @@
 ## Fix
 - [ ] Delete function on all routes
 - [ ] Log out automatically when the app is closed
-- [ ] Screen sizes of the useScreen hook
 
 ## Stretch
 - Migrate frontend from webpack to vite
 - Create documentation
-- Make app responsvie
+- [ ] Make app responsvie
+  - [x] Navbar
+  - [x] Home
+  - [ ] Forms
+  - [ ] Scanner
 - [ ] Scan code with camera to save
   - [x] Find a barcode reader library - [QuaggaJS](https://serratus.github.io/quaggaJS)
   - [x] Get barcode info
