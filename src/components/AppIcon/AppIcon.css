@@ -1,0 +1,15 @@
+img{
+  margin-top: 10px;
+}
+.logo-sm{
+  height: 40px;
+  width: 120px;
+}
+.logo-md{
+  height: 70px;
+  width: 150px;
+}
+.logo-lg{
+  height: 100px;
+  width: 180px;
+}
