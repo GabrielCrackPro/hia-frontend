@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import { Card, CardContent, Link, Typography, useTheme } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Box } from "@mui/system";
-import { toDate } from "../../utils";
 
-const CardItem = ({ icon, title }) => {
+const CardItem = ({ icon, title, sx }) => {
   const [data, setData] = useState([]);
   const loggedUser = JSON.parse(localStorage.getItem("USER"));
   const { items, shops, locations } = loggedUser;
@@ -21,7 +20,7 @@ const CardItem = ({ icon, title }) => {
   }, []);
   const colors = useTheme().palette;
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" sx={sx}>
       <CardContent>
         <Typography variant="h5">
           {icon} {title}
