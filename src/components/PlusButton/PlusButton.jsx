@@ -8,7 +8,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CloseIcon from "@mui/icons-material/Close";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
-const PlusButton = () => {
+const PlusButton = ({ sx }) => {
   const actions = [
     { icon: <InventoryIcon />, name: "Item" },
     { icon: <StoreIcon />, name: "Shop" },
@@ -33,7 +33,7 @@ const PlusButton = () => {
   };
 
   return (
-    <SpeedDial transitionDuration={500} ariaLabel="Create SpeedDial" sx={{ position: "absolute", bottom: 100, right: 16 }} icon={<SpeedDialIcon sx={{ fontSize: "20px" }} />} openIcon={<CloseIcon />}
+    <SpeedDial transitionDuration={500} ariaLabel="Create SpeedDial" sx={sx || { position: "absolute", bottom: 100, right: 16 }} icon={<SpeedDialIcon sx={{ fontSize: "20px" }} />} openIcon={<CloseIcon />}
     >
       {actions.map((action) => (
         <SpeedDialAction key={action.name} id={action.name} icon={action.icon} tooltipTitle={action.name} onClick={handleClick} tooltipOpen />
