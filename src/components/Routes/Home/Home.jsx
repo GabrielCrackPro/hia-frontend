@@ -17,9 +17,9 @@ const Home = () => {
   };
   return (
     <>
-      {isPhoneScreen || isTabletScreen ? <Titlebar /> : "" }
+      {isPhoneScreen || isTabletScreen ? <Titlebar /> : ""}
       <Navbar value="home" />
-      <PlusButton />
+      {isPhoneScreen || isTabletScreen ? <PlusButton /> : ""}
       <Box sx={!isPhoneScreen && !isTabletScreen ? { display: "flex", justifyContent: "space-evenly", marginTop: "70px" } : {}}>
         <CardItem icon={<InventoryIcon />} title="Items" sx={cardStyles} />
         <CardItem icon={<StoreIcon />} title="Shops" sx={cardStyles} />
