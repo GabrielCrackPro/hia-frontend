@@ -15,34 +15,18 @@ const Home = () => {
   const cardStyles = {
     width: "100%"
   };
-  if (!isPhoneScreen && !isTabletScreen) {
-    return (
-      <>
-        <Titlebar />
-        <Navbar value="home" />
-        <PlusButton />
-        <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
-          <CardItem icon={<InventoryIcon />} title="Items" sx={cardStyles} />
-          <CardItem icon={<StoreIcon />} title="Shops" sx={cardStyles} />
-          <CardItem icon={<LocationOnIcon />} title="Locations" sx={cardStyles} />
-        </Box>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Titlebar />
-        <Navbar value="home" />
-        <PlusButton />
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardItem icon={<InventoryIcon />} title="Items" sx={cardStyles} />
-          <CardItem icon={<StoreIcon />} title="Shops" sx={cardStyles} />
-          <CardItem icon={<LocationOnIcon />} title="Locations" sx={cardStyles} />
-        </Box>
-      </>
-
-    );
-  }
+  return (
+    <>
+      {isPhoneScreen || isTabletScreen ? <Titlebar /> : "" }
+      <Navbar value="home" />
+      <PlusButton />
+      <Box sx={!isPhoneScreen && !isTabletScreen ? { display: "flex", justifyContent: "space-evenly", marginTop: "70px" } : {}}>
+        <CardItem icon={<InventoryIcon />} title="Items" sx={cardStyles} />
+        <CardItem icon={<StoreIcon />} title="Shops" sx={cardStyles} />
+        <CardItem icon={<LocationOnIcon />} title="Locations" sx={cardStyles} />
+      </Box>
+    </>
+  );
 };
 
 export default Home;
