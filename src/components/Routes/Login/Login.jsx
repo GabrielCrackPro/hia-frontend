@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Button, Link, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { postData } from "../../../utils";
@@ -91,8 +91,8 @@ const Login = () => {
           <TextField variant="filled" label={usernameLabel} fullWidth onChange={handleUsernameChange} error={userInputError} />
           <TextField variant="filled" label={passwordLabel} type="password" sx={{ marginTop: "15px" }} fullWidth onChange={handlePasswordChange} error={passwordInputError} />
           <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "15px" }}><LoginIcon /> Login</Button>
+          <Button type="button" href="/register" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
         </form>
-        <Link href="/register" component="a" textAlign="center" underline="none" sx={{ width: "100vw", padding: "3px", textTransform: "uppercase", marginTop: "15px", border: "1px solid currentcolor" }}><AddIcon /> Register</Link>
       </Box>
     </>
   );

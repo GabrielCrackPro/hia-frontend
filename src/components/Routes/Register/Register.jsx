@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
 
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Titlebar from "../../Titlebar/TitleBar";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Button, Link, Typography } from "@mui/material";
-import { postData } from "../../../utils";
+import AddIcon from "@mui/icons-material/Add";
+import LoginIcon from "@mui/icons-material/Login";
 import AppIcon from "../../AppIcon/AppIcon";
+import { Button, Typography, Box } from "@mui/material";
+import { postData } from "../../../utils";
 
 const Register = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -60,7 +61,7 @@ const Register = () => {
       <Titlebar />
       <Box sx={{ marginTop: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
         <AppIcon size="large" />
-        <Typography variant="h4">Register</Typography>
+        <Typography variant="h4">Create Account</Typography>
         <form onSubmit={handleSubmit}>
           <TextField variant="filled" label="Username" fullWidth value={username} onChange={handleUsernameChange} sx={{ marginBottom: "10px" }} />
           <TextField variant="filled" label="Display Name" fullWidth value={displayname} onChange={handleDisplaynameChange} sx={{ marginBottom: "10px" }} />
@@ -81,9 +82,9 @@ const Register = () => {
               variant="filled"
             />
           </FormControl>
-          <Button type="submit" variant="contained" fullWidth sx={{ marginTop: "10px" }}>Register</Button>
+          <Button type="submit" variant="contained" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
+          <Button type="button" href="/" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><LoginIcon /> Login</Button>
         </form>
-        <Link href="/login" component="a" textAlign="center" underline="none" sx={{ padding: "3px", textTransform: "uppercase", marginTop: "15px", border: "1px solid currentcolor", width: "100%" }}>Login</Link>
       </Box>
     </>
   );
