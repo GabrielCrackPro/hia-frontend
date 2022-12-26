@@ -20,6 +20,7 @@
 - Create documentation
 - [ ] Make app responsvie
   - [x] Navbar
+  - [ ] Items/Shops/Locations
   - [x] Home
   - [ ] Forms
   - [ ] Scanner
