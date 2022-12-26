@@ -9,6 +9,7 @@
 
 ## Change
 - [ ] Logo
+  - [ ] Make a different logo depending on color mode
 
 ## Fix
 - [ ] Delete function on all routes
