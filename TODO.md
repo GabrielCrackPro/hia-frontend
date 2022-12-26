@@ -4,6 +4,7 @@
 - [ ] edit/delete user functionality
 - [ ] edit item/shop/location functionality 
 - [ ] change accent color functionality
+- [ ] actions history
 - [ ] Comment code
 
 ## Change
