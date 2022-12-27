@@ -8,6 +8,7 @@ import { Box } from "@mui/system";
 import { getBarcodeInfo } from "../../../utils";
 import InfoIcon from "@mui/icons-material/Info";
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
+import useScreenSize from "../../../hooks/useScreenSize";
 import "./Scan.css";
 
 const Scan = () => {
@@ -15,6 +16,7 @@ const Scan = () => {
   const [barcodeDetected, setBarcodeDetected] = useState(false);
   const [scannedBarcode, setScannedBarcode] = useState("");
   const [barcodeFormat, setBarcodeFormat] = useState("");
+  const { isPhoneScreen, isTabletScreen } = useScreenSize();
   const stopScan = () => {
     Quagga.stop();
     setIsScanActive(false);
@@ -44,12 +46,6 @@ const Scan = () => {
           // "upc_e_reader",
           // "i2of5_reader"
         ],
-        debug: {
-          drawBoundingBox: true,
-          showFrequency: true,
-          drawScanline: true,
-          showPattern: true
-        },
       },
     }, (err) => {
       if (err) {
@@ -95,15 +91,15 @@ const Scan = () => {
     <>
       <Titlebar />
       <Navbar />
-      <Typography variant="h4" textAlign="center">Scan a barcode</Typography>
-      <Box id="scan-box"></Box>
+      <Typography variant="h3" textAlign="center">Scan a barcode</Typography>
+      <Box id="scan-box" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}></Box>
       {barcodeDetected ?
         <>
           <form>
             <TextField label="Code" variant="filled" fullWidth value={scannedBarcode} onChange={handleCodeChange} sx={{ marginBottom: "10px" }} />
             <TextField label="Format" variant="filled" fullWidth value={barcodeFormat} sx={{ marginTop: "10px", marginBottom: "10px" }} />
+            <Button variant="contained" onClick={() => getBarcodeInfo(scannedBarcode)} sx={{ marginBottom: "10px" }}><InfoIcon /> Get code details</Button>
           </form>
-          <Button variant="contained" fullWidth onClick={() => getBarcodeInfo(scannedBarcode)} sx={{ marginBottom: "10px" }}><InfoIcon /> Get code details</Button>
         </>
         :
         ""}
