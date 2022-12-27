@@ -21,9 +21,10 @@
 - [ ] Make app responsvie
   - [x] Navbar
   - [x] Items/Shops/Locations
+  - [ ] Settings
   - [x] Home
-  - [ ] Forms
-  - [ ] Scanner
+  - [x] Forms
+  - [x] Scanner
 - [ ] Scan code with camera to save
   - [x] Find a barcode reader library - [QuaggaJS](https://serratus.github.io/quaggaJS)
   - [x] Get barcode info
