@@ -34,7 +34,7 @@ const Shops = () => {
     <>
       <Titlebar />
       <Navbar value="shops" />
-      {isPhoneScreen && isTabletScreen ? <PlusButton /> : ""}
+      {isPhoneScreen || isTabletScreen ? <PlusButton /> : ""}
       <ZoomIn>
         <Typography variant="h3" textAlign="center">Shops</Typography>
       </ZoomIn>
