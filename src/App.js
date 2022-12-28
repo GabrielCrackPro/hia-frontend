@@ -25,19 +25,17 @@ export const darkTheme = createTheme({
 
 function App () {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/items" element={<Items />} />
-        <Route path="/shops" element={<Shops />} />
-        <Route path="/locations" element={<Locations />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/new/:type" element={<CreateForm />} />
-        <Route path="/scan" element={<Scan />}/>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/items" element={<Items />} />
+      <Route path="/shops" element={<Shops />} />
+      <Route path="/locations" element={<Locations />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/new/:type" element={<CreateForm />} />
+      <Route path="/scan" element={<Scan />} />
+    </Routes>
   );
 }
 
