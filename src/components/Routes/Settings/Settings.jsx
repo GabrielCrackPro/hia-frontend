@@ -30,7 +30,7 @@ const Settings = () => {
       <Navbar value="settings" />
       {isPhoneScreen || isTabletScreen ? <Titilebar /> : ""}
       <SlideUp>
-        <Box sx={!isPhoneScreen || !isTabletScreen ? { marginTop: "60px" } : {}}>
+        <Box sx={!isPhoneScreen || !isTabletScreen ? { marginTop: "55px" } : {}}>
           <Card sx={!isPhoneScreen && !isTabletScreen ? { display: "flex", alignItems: "center", justifyContent: "space-around" } : { display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <Avatar src={loggedUser.profilePicture} sx={{ marginTop: "15px", height: "200px", width: "200px" }} />
             <CardContent>
