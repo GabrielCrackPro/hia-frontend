@@ -19,10 +19,10 @@
 ## Stretch
 - Migrate frontend from webpack to vite
 - Create documentation
-- [ ] Make app responsvie
+- [x] Make app responsvie
   - [x] Navbar
   - [x] Items/Shops/Locations
-  - [ ] Settings
+  - [x] Settings
   - [x] Home
   - [x] Forms
   - [x] Scanner
