@@ -12,6 +12,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppIcon from "../../AppIcon/AppIcon";
 import { Button, Typography, Box } from "@mui/material";
 import { postData } from "../../../utils";
+import { ZoomIn } from "../../Animation/Animation";
 
 const Register = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -59,33 +60,35 @@ const Register = () => {
   return (
     <>
       <Titlebar />
-      <Box sx={{ marginTop: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
-        <AppIcon size="large" />
-        <Typography variant="h4">Create Account</Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField variant="filled" label="Username" fullWidth value={username} onChange={handleUsernameChange} sx={{ marginBottom: "10px" }} />
-          <TextField variant="filled" label="Display Name" fullWidth value={displayname} onChange={handleDisplaynameChange} sx={{ marginBottom: "10px" }} />
-          <FormControl variant="filled" fullWidth>
-            <TextField
-              label="Password"
-              fullWidth
-              value={password}
-              onChange={handlePasswordChange}
-              type={passwordVisible ? "text" : "password"}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Button onClick={handlePasswordVisibility}>{passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}</Button>
-                  </InputAdornment>
-                ),
-              }}
-              variant="filled"
-            />
-          </FormControl>
-          <Button type="submit" variant="contained" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
-          <Button type="button" href="/" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><LoginIcon /> Login</Button>
-        </form>
-      </Box>
+      <ZoomIn>
+        <Box sx={{ marginTop: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
+          <AppIcon size="large" />
+          <Typography variant="h4">Create Account</Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField variant="filled" label="Username" fullWidth value={username} onChange={handleUsernameChange} sx={{ marginBottom: "10px" }} />
+            <TextField variant="filled" label="Display Name" fullWidth value={displayname} onChange={handleDisplaynameChange} sx={{ marginBottom: "10px" }} />
+            <FormControl variant="filled" fullWidth>
+              <TextField
+                label="Password"
+                fullWidth
+                value={password}
+                onChange={handlePasswordChange}
+                type={passwordVisible ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button onClick={handlePasswordVisibility}>{passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}</Button>
+                    </InputAdornment>
+                  ),
+                }}
+                variant="filled"
+              />
+            </FormControl>
+            <Button type="submit" variant="contained" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
+            <Button type="button" href="/" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><LoginIcon /> Login</Button>
+          </form>
+        </Box>
+      </ZoomIn>
     </>
   );
 };

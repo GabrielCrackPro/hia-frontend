@@ -7,6 +7,7 @@ import { postData, putData } from "../../utils";
 import Navbar from "../Navbar/Navbar";
 import Titlebar from "../Titlebar/TitleBar";
 import AddIcon from "@mui/icons-material/Add";
+import { SlideDownAlert, ZoomIn } from "../Animation/Animation";
 
 const CreateForm = () => {
   const { type } = useParams();
@@ -79,34 +80,37 @@ const CreateForm = () => {
     return (
       <>
         <Titlebar />
-        {isAlertShown ? <Alert severity={alertSeverity} variant="filled" sx={{ marginTop: "10px" }} hidden={true}>{alertMessage}</Alert> : ""}
+
+        {isAlertShown ? <Alert severity={alertSeverity} variant="filled" sx={{ marginTop: "10px" }} hidden>{alertMessage}</Alert> : ""}
         <Navbar value="items" />
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <Typography variant="h4" textAlign="center" marginTop="5px" marginBottom="5px">Create new {type}</Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField variant="filled" label="Item name" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleItemNameChange} />
-            <TextField variant="filled" label="Item description" size="medium" autoComplete="false" spellCheck="false" multiline fullWidth error={inputError} onChange={handleItemDescriptionChange} />
-            <Select value={itemRoom} variant="filled" sx={{ marginTop: "15px" }} size="small" fullWidth error={inputError} onChange={handleItemRoomChange}>
-              <MenuItem value="item_room">Select Room</MenuItem>
-              {
-                loggedUser.locations.map((location) => {
-                  return <MenuItem value={location.room}>{location.room}</MenuItem>;
-                })
-              }
-            </Select>
-            <Select value={itemType} variant="filled" sx={{ marginTop: "15px" }} size="small" fullWidth error={inputError} onChange={handleItemTypeChange}>
-              <MenuItem value="item_type" disabled>Select Item Type</MenuItem>
-              <MenuItem value="food">Food</MenuItem>
-              <MenuItem value="drink">Drink</MenuItem>
-              <MenuItem value="furniture">Furniture</MenuItem>
-              <MenuItem value="electronics">Electronics</MenuItem>
-              <MenuItem value="clothes">Clothes</MenuItem>
-              <MenuItem value="bags">Bags</MenuItem>
-              <MenuItem value="other">Other</MenuItem>
-            </Select>
-            <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "20px" }}><AddIcon /> Create</Button>
-          </form>
-        </Box>
+        <ZoomIn>
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <Typography variant="h4" textAlign="center" marginTop="5px" marginBottom="5px">Create new {type}</Typography>
+            <form onSubmit={handleSubmit}>
+              <TextField variant="filled" label="Item name" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleItemNameChange} />
+              <TextField variant="filled" label="Item description" size="medium" autoComplete="false" spellCheck="false" multiline fullWidth error={inputError} onChange={handleItemDescriptionChange} />
+              <Select value={itemRoom} variant="filled" sx={{ marginTop: "15px" }} size="small" fullWidth error={inputError} onChange={handleItemRoomChange}>
+                <MenuItem value="item_room">Select Room</MenuItem>
+                {
+                  loggedUser.locations.map((location) => {
+                    return <MenuItem value={location.room}>{location.room}</MenuItem>;
+                  })
+                }
+              </Select>
+              <Select value={itemType} variant="filled" sx={{ marginTop: "15px" }} size="small" fullWidth error={inputError} onChange={handleItemTypeChange}>
+                <MenuItem value="item_type" disabled>Select Item Type</MenuItem>
+                <MenuItem value="food">Food</MenuItem>
+                <MenuItem value="drink">Drink</MenuItem>
+                <MenuItem value="furniture">Furniture</MenuItem>
+                <MenuItem value="electronics">Electronics</MenuItem>
+                <MenuItem value="clothes">Clothes</MenuItem>
+                <MenuItem value="bags">Bags</MenuItem>
+                <MenuItem value="other">Other</MenuItem>
+              </Select>
+              <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "20px" }}><AddIcon /> Create</Button>
+            </form>
+          </Box>
+        </ZoomIn>
       </>
     );
   } else if (type == "shop") {
@@ -179,26 +183,28 @@ const CreateForm = () => {
         <Titlebar />
         {isAlertShown ? <Alert severity={alertSeverity} variant="filled" sx={{ marginTop: "10px" }} hidden={true}>{alertMessage}</Alert> : ""}
         <Navbar value="shops" />
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <Typography variant="h4" textAlign="center" marginTop="5px" marginBottom="5px">Create new {type}</Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField variant="filled" label="Shop Name" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleShopNameChange} />
-            <TextField variant="filled" label="Shop Description" size="small" autoComplete="false" spellCheck="false" multiline fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleShopDescriptionChange} />
-            <TextField variant="filled" label="Shop Address" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} onChange={handleShopAddressChange} />
-            <Select value={shopType} variant="filled" size="small" fullWidth error={inputError} sx={{ marginTop: "20px" }} onChange={handleShopTypeChange}>
-              <MenuItem value="shop_type" disabled>Select Shop Type</MenuItem>
-              <MenuItem value="physical">Physical</MenuItem>
-              <MenuItem value="online">Online</MenuItem>
-            </Select>
-            <Select value={shopSchedule} variant="filled" size="small" fullWidth error={inputError} onChange={handleShopScheduleChange}>
-              <MenuItem value="shop_schedule" disabled>Select Shop Schedule</MenuItem>
-              <MenuItem value="everyday">Everyday</MenuItem>
-              <MenuItem value="week">Week</MenuItem>
-              <MenuItem value="weekend">Weekend</MenuItem>
-            </Select>
-            <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "20px" }}><AddIcon /> Create</Button>
-          </form>
-        </Box>
+        <ZoomIn>
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <Typography variant="h4" textAlign="center" marginTop="5px" marginBottom="5px">Create new {type}</Typography>
+            <form onSubmit={handleSubmit}>
+              <TextField variant="filled" label="Shop Name" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleShopNameChange} />
+              <TextField variant="filled" label="Shop Description" size="small" autoComplete="false" spellCheck="false" multiline fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleShopDescriptionChange} />
+              <TextField variant="filled" label="Shop Address" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} onChange={handleShopAddressChange} />
+              <Select value={shopType} variant="filled" size="small" fullWidth error={inputError} sx={{ marginTop: "20px" }} onChange={handleShopTypeChange}>
+                <MenuItem value="shop_type" disabled>Select Shop Type</MenuItem>
+                <MenuItem value="physical">Physical</MenuItem>
+                <MenuItem value="online">Online</MenuItem>
+              </Select>
+              <Select value={shopSchedule} variant="filled" size="small" fullWidth error={inputError} onChange={handleShopScheduleChange}>
+                <MenuItem value="shop_schedule" disabled>Select Shop Schedule</MenuItem>
+                <MenuItem value="everyday">Everyday</MenuItem>
+                <MenuItem value="week">Week</MenuItem>
+                <MenuItem value="weekend">Weekend</MenuItem>
+              </Select>
+              <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "20px" }}><AddIcon /> Create</Button>
+            </form>
+          </Box>
+        </ZoomIn>
       </>
     );
   } else if (type == "location") {
@@ -260,15 +266,17 @@ const CreateForm = () => {
         <Titlebar />
         {isAlertShown ? <Alert severity={alertSeverity} variant="filled" sx={{ marginTop: "10px" }} hidden={true}>{alertMessage}</Alert> : ""}
         <Navbar value="locations" />
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-          <Typography variant="h4" textAlign="center" marginTop="5px" marginBottom="5px">Create new {type}</Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField variant="filled" label="Location Name" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleLocationNameChange} />
-            <TextField variant="filled" label="Location Description" size="small" autoComplete="false" spellCheck="false" multiline fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleLocationDescriptionChange} />
-            <TextField variant="filled" label="Location Room" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} onChange={handleLocationRoomChange} />
-            <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "20px" }}><AddIcon /> Create</Button>
-          </form>
-        </Box>
+        <ZoomIn>
+          <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <Typography variant="h4" textAlign="center" marginTop="5px" marginBottom="5px">Create new {type}</Typography>
+            <form onSubmit={handleSubmit}>
+              <TextField variant="filled" label="Location Name" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleLocationNameChange} />
+              <TextField variant="filled" label="Location Description" size="small" autoComplete="false" spellCheck="false" multiline fullWidth error={inputError} sx={{ marginBottom: "20px" }} onChange={handleLocationDescriptionChange} />
+              <TextField variant="filled" label="Location Room" size="small" autoComplete="false" spellCheck="false" fullWidth error={inputError} onChange={handleLocationRoomChange} />
+              <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "20px" }}><AddIcon /> Create</Button>
+            </form>
+          </Box>
+        </ZoomIn>
       </>
     );
 

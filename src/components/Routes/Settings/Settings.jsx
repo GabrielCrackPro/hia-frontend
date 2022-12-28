@@ -11,6 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Box } from "@mui/system";
 import { Avatar, Button, Card, CardContent, CardActions } from "@mui/material";
 import { postData } from "../../../utils";
+import { SlideUp } from "../../Animation/Animation";
 const Settings = () => {
   const loggedUser = JSON.parse(localStorage.getItem("USER"));
   const handleLogout = () => {
@@ -26,27 +27,29 @@ const Settings = () => {
     <>
       <Navbar value="settings" />
       <Titilebar />
-      <Box>
-        <Card sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-          <Avatar src={loggedUser.profilePicture} sx={{ marginTop: "15px", height: "200px", width: "200px" }} />
-          <CardContent>
-            <Typography variant="h4" component="h4" textAlign="center">
-              {loggedUser.displayname}
-            </Typography>
-            <Typography variant="body1" component="p" textAlign="center">
-              <AlternateEmailIcon sx={{ fontSize: "15px" }} /> {loggedUser.username}
-            </Typography>
-            <Typography variant="p" component="p" textAlign="center">
-              <InventoryIcon /> {loggedUser.items.length}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small" variant="contained" color="secondary"><EditIcon />Edit</Button>
-            <Button size="small" variant="contained" color="error"><DeleteIcon /> Delete</Button>
-          </CardActions>
-        </Card>
-        <Button variant="contained" color="secondary" fullWidth sx={{ marginTop: "10px" }} onClick={handleLogout}><LogoutIcon /> Log out</Button>
-      </Box>
+      <SlideUp>
+        <Box>
+          <Card sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <Avatar src={loggedUser.profilePicture} sx={{ marginTop: "15px", height: "200px", width: "200px" }} />
+            <CardContent>
+              <Typography variant="h4" component="h4" textAlign="center">
+                {loggedUser.displayname}
+              </Typography>
+              <Typography variant="body1" component="p" textAlign="center">
+                <AlternateEmailIcon sx={{ fontSize: "15px" }} /> {loggedUser.username}
+              </Typography>
+              <Typography variant="p" component="p" textAlign="center">
+                <InventoryIcon /> {loggedUser.items.length}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" variant="contained" color="secondary"><EditIcon />Edit</Button>
+              <Button size="small" variant="contained" color="error"><DeleteIcon /> Delete</Button>
+            </CardActions>
+          </Card>
+          <Button variant="contained" color="secondary" fullWidth sx={{ marginTop: "10px" }} onClick={handleLogout}><LogoutIcon /> Log out</Button>
+        </Box>
+      </SlideUp>
     </>
   );
 };

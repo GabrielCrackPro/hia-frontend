@@ -7,6 +7,7 @@ import Titlebar from "../../Titlebar/TitleBar";
 import LoginIcon from "@mui/icons-material/Login";
 import AddIcon from "@mui/icons-material/Add";
 import AppIcon from "../../AppIcon/AppIcon";
+import { ZoomIn } from "../../Animation/Animation";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -84,16 +85,18 @@ const Login = () => {
   return (
     <>
       <Titlebar />
-      <Box display="flex" flexDirection="column" marginTop="20px" alignItems="center" justifyContent="center">
-        <AppIcon size="large" />
-        <Typography variant="h5">Login</Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField variant="filled" label={usernameLabel} fullWidth onChange={handleUsernameChange} error={userInputError} />
-          <TextField variant="filled" label={passwordLabel} type="password" sx={{ marginTop: "15px" }} fullWidth onChange={handlePasswordChange} error={passwordInputError} />
-          <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "15px" }}><LoginIcon /> Login</Button>
-          <Button type="button" href="/register" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
-        </form>
-      </Box>
+      <ZoomIn>
+        <Box display="flex" flexDirection="column" marginTop="20px" alignItems="center" justifyContent="center">
+          <AppIcon size="large" />
+          <Typography variant="h5">Login</Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField variant="filled" label={usernameLabel} fullWidth onChange={handleUsernameChange} error={userInputError} />
+            <TextField variant="filled" label={passwordLabel} type="password" sx={{ marginTop: "15px" }} fullWidth onChange={handlePasswordChange} error={passwordInputError} />
+            <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "15px" }}><LoginIcon /> Login</Button>
+            <Button type="button" href="/register" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
+          </form>
+        </Box>
+      </ZoomIn>
     </>
   );
 };
