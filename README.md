@@ -3,6 +3,7 @@
 ## Add
 - [ ] edit/delete user functionality
 - [ ] edit item/shop/location functionality 
+- [x] screen animations
 - [ ] change accent color functionality
 - [ ] actions history
 - [ ] Comment code
