@@ -7,7 +7,7 @@ import { postData, putData } from "../../utils";
 import Navbar from "../Navbar/Navbar";
 import Titlebar from "../Titlebar/TitleBar";
 import AddIcon from "@mui/icons-material/Add";
-import { SlideDownAlert, ZoomIn } from "../Animation/Animation";
+import { ZoomIn } from "../Animation/Animation";
 
 const CreateForm = () => {
   const { type } = useParams();
@@ -49,6 +49,12 @@ const CreateForm = () => {
         // eslint-disable-next-line camelcase
         updated_at: new Date()
       };
+
+      const action = {
+        action: `Create item ${item.name} at ${item.created_at.toLocaleString()}`,
+        user: JSON.stringify(loggedUser)
+      };
+      
       if (itemName == "" || itemDescription == "" || itemType == "item_type") {
         setIsAlertShown(true);
         setAlertSeverity("error");
@@ -65,6 +71,7 @@ const CreateForm = () => {
             setAlertSeverity("success");
             setAlertMessage(`${response.item.name} added successfully`);
             loggedUser.items.push(item);
+            loggedUser.actions.push(action);
             localStorage.setItem("USER", JSON.stringify(loggedUser));
             putData(`http://127.0.0.1:3001/api/v1/users/${loggedUser["_id"]}`, loggedUser);
             setTimeout(() => location.pathname = "/home", 1500);
@@ -148,8 +155,13 @@ const CreateForm = () => {
         created_at: new Date(),
         // eslint-disable-next-line camelcase
         updated_at: new Date()
-
       };
+
+      const action = {
+        action: `Create shop ${shop.name} at ${shop.created_at.toLocaleString()}`,
+        user: JSON.stringify(loggedUser)
+      };
+
       if (shopName == "" || shopDescription == "" || shopType == "" || shopAddress == "" || shopSchedule == "") {
         setIsAlertShown(true);
         setAlertSeverity("error");
@@ -166,6 +178,7 @@ const CreateForm = () => {
             setAlertSeverity("success");
             setAlertMessage(`${response.shop.name} added successfully`);
             loggedUser.shops.push(shop);
+            loggedUser.actions.push(action);
             localStorage.setItem("USER", JSON.stringify(loggedUser));
             putData(`http://127.0.0.1:3001/api/v1/users/${loggedUser["_id"]}`, loggedUser);
             setTimeout(() => location.pathname = "/home", 1500);
@@ -232,6 +245,12 @@ const CreateForm = () => {
         updated_at: new Date()
 
       };
+
+      const action = {
+        action: `Create location ${location.name} at ${location.created_at.toLocaleString()}`,
+        user: JSON.stringify(loggedUser)
+      };
+
       if (locationName == "" || locationDescription == "" || locationRoom == "") {
         setIsAlertShown(true);
         setInputError(true);
@@ -249,6 +268,7 @@ const CreateForm = () => {
             setAlertSeverity("success");
             setAlertMessage(`${response.location.name} added successfully`);
             loggedUser.locations.push(location);
+            loggedUser.actions.push(action);
             localStorage.setItem("USER", JSON.stringify(loggedUser));
             putData(`http://127.0.0.1:3001/api/v1/users/${loggedUser["_id"]}`, loggedUser);
             setTimeout(() => window.location.pathname = "/home", 1500);
