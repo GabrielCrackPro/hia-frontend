@@ -51,7 +51,8 @@ const CreateForm = () => {
       };
 
       const action = {
-        action: `Create item ${item.name} at ${item.created_at.toLocaleString()}`,
+        action: `Create item ${item.name}`,
+        timestamp: item.created_at,
         user: JSON.stringify(loggedUser)
       };
       
@@ -158,7 +159,8 @@ const CreateForm = () => {
       };
 
       const action = {
-        action: `Create shop ${shop.name} at ${shop.created_at.toLocaleString()}`,
+        action: `Create shop ${shop.name}`,
+        timestamp: shop.created_at,
         user: JSON.stringify(loggedUser)
       };
 
@@ -247,7 +249,8 @@ const CreateForm = () => {
       };
 
       const action = {
-        action: `Create location ${location.name} at ${location.created_at.toLocaleString()}`,
+        action: `Create location ${location.name}`,
+        timestamp: location.created_at,
         user: JSON.stringify(loggedUser)
       };
 

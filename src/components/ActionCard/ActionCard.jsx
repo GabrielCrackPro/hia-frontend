@@ -2,21 +2,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, CardContent, Typography } from "@mui/material";
+import HistoryIcon from "@mui/icons-material/History";
+import PersonIcon from "@mui/icons-material/Person";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
-const ActionCard = ({ action, user, sx }) => {
+const ActionCard = ({ action, user, timestamp, sx }) => {
   return (
     <Card variant="outlined" sx={sx}>
-      <CardContent>
-        <Typography variant="p">Action - {action}</Typography> <br />
-        <Typography variant="p">User - {user}</Typography>
+      <CardContent sx={{ display: "flex", flexDirection: "column" }}>
+        <Typography variant="p"><HistoryIcon /> {action}</Typography>
+        <Typography variant="p"><PersonIcon /> {user}</Typography>
+        <Typography variant="p"><AccessTimeIcon /> {timestamp}</Typography>
       </CardContent>
-    </Card>
+    </Card >
   );
 };
 
 ActionCard.propTypes = {
   action: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired
+  user: PropTypes.string.isRequired,
+  timestamp: PropTypes.string.isRequired
 };
 
 export default ActionCard;
