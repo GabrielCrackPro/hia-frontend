@@ -4,6 +4,7 @@ import Navbar from "../../Navbar/Navbar";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import StoreIcon from "@mui/icons-material/Store";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import HistoryIcon from "@mui/icons-material/History";
 import CardItem from "../../CardItem/CardItem";
 import { Box, Link, Typography } from "@mui/material";
 import Titlebar from "../../Titlebar/TitleBar";
@@ -31,7 +32,7 @@ const Home = () => {
             <CardItem icon={<StoreIcon />} title="Shops" sx={cardStyles} />
             <CardItem icon={<LocationOnIcon />} title="Locations" sx={cardStyles} />
           </Box>
-          <Typography variant="h4" textAlign="center">Last 3 actions <Link href="/actions" underline="none" color="#b8b9b9" fontSize={17}>View All</Link></Typography>
+          {loggedUser.actions.length ? <Typography variant="h4" textAlign="center">Last 3 Actions <Link href="/actions" underline="none" color="#b8b9b9" fontSize={17}>View All</Link></Typography> : ""}
           <Box sx={!isPhoneScreen && !isTabletScreen ? { display: "grid", gridTemplateColumns: "repeat(3, 1fr)", marginTop: "70px" } : { marginTop: "10px", overflowY: "scroll" }}>
             {loggedUser.actions.length
               ?
@@ -41,7 +42,18 @@ const Home = () => {
                 return <ActionCard key={action.action} action={action.action} user={userObj.username} timestamp={formattedTimestampt} />;
               })
               :
-              <Typography variant="h5" color="#b8b9b9">No actions yet</Typography>
+              <Box sx={{
+                width: "100vw",
+                height: "30vh",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#b8b8b8"
+              }}>
+                <HistoryIcon sx={{ fontSize: "75px" }} />
+                <Typography sx={{ fontSize: "35px", fontWeight: "bold" }}>No actions yet</Typography>
+              </Box>
             }
           </Box>
         </Box>
