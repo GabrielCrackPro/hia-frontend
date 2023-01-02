@@ -7,6 +7,9 @@
 - [ ] custom favicon
 - [ ] change accent color functionality
 - [ ] actions history
+ - [x] Create
+ - [ ] Update
+ - [ ] Delete
 - [ ] Comment code
 
 ## Change
