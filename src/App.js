@@ -12,6 +12,7 @@ import { createTheme } from "@mui/material/styles";
 import Login from "./components/Routes/Login/Login";
 import Register from "./components/Routes/Register/Register";
 import Scan from "./components/Routes/Scan/Scan";
+import Actions from "./components/Routes/Actions/Actions";
 export const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -33,6 +34,7 @@ function App () {
       <Route path="/shops" element={<Shops />} />
       <Route path="/locations" element={<Locations />} />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/actions" element={<Actions />} />
       <Route path="/new/:type" element={<CreateForm />} />
       <Route path="/scan" element={<Scan />} />
     </Routes>
