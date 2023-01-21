@@ -2,6 +2,7 @@
 
 ## Add
 - [ ] edit/delete user functionality
+  - delete functionallity will set the active field to false
 - [ ] edit item/shop/location functionality 
 - [x] screen animations
 - [ ] custom favicon
