@@ -16,6 +16,8 @@
 ## Change
 - [ ] Logo
   - [ ] Make a different logo depending on color mode
+  - [ ] App name: Posiblr names:
+    - HomeStock
 
 ## Fix
 - [ ] Delete function on all routes
