@@ -1,5 +1,28 @@
-const getData = async (url) => {
-  const response = await fetch(url).then((data) => data.json());
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://127.0.0.1:3001/api/v1/",
+  headers: {
+    "Access-Control-Allow-Origin": "https://127.0.0.1:3001/",
+    "Content-Type": "application/json",
+  },
+});
+
+// TODO: Change fetch with axios
+
+/*
+All requests made with axios use the baseUrl
+You only need to add the endpoint
+For example to make an API request that returns the users do:
+
+api.get("users")
+The request URL would be:
+http://127.0.0.1:3001/api/v1/users
+*/
+
+const getData = async (endpoint) => {
+  const response = axios.get(endpoint);
+  // const response = await fetch(url).then((data) => data.json());
   return response;
 };
 
@@ -43,24 +66,23 @@ const deleteOne = async (type, id) => {
 };
 
 const getBarcodeInfo = async (code) => {
-  // TODO: FIND another API
   const response = await fetch(`https://www.brocade.io/api/items/${code}`, {
     headers: {
-      "mode": "cors",
+      mode: "cors",
       "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   }).then((response) => response.json());
   console.log(response);
   return response;
 };
-
 
 const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 export {
+  api,
   getData,
   postData,
   putData,
