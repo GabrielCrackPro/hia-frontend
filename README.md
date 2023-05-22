@@ -17,7 +17,7 @@
 
 - [ ] Logo
   - [ ] Make a different logo depending on color mode
-  - [ ] App name: Posiblr names:
+  - [ ] App name: Posible names:
     - HomeStock
 
 ## Fix
