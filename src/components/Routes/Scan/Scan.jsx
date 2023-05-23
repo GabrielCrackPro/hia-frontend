@@ -5,18 +5,18 @@ import Navbar from "../../Navbar/Navbar";
 import Titlebar from "../../Titlebar/TitleBar";
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { getBarcodeInfo } from "../../../utils";
-import InfoIcon from "@mui/icons-material/Info";
+import { getBarcodeInfo, getData, postData } from "../../../utils";
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
-import useScreenSize from "../../../hooks/useScreenSize";
 import "./Scan.css";
+import { Add } from "@mui/icons-material";
 
 const Scan = () => {
   const [isScanActive, setIsScanActive] = useState(false);
   const [barcodeDetected, setBarcodeDetected] = useState(false);
   const [scannedBarcode, setScannedBarcode] = useState("");
   const [barcodeFormat, setBarcodeFormat] = useState("");
-  const { isPhoneScreen, isTabletScreen } = useScreenSize();
+  const [itemName, setItemName] = useState("");
+  const [itemType, setItemType] = useState("food");
   const stopScan = () => {
     Quagga.stop();
     setIsScanActive(false);
@@ -75,17 +75,41 @@ const Scan = () => {
         }
       }
     });
-    Quagga.onDetected((result) => {
+    Quagga.onDetected(async (result) => {
       setBarcodeDetected(true);
       setScannedBarcode(result.codeResult.code);
       setBarcodeFormat(result.codeResult.format);
       console.log(`Barcode detected and processed : ${result.codeResult.code}`);
       setIsScanActive(false);
       stopScan();
+      const savedItems = await (await getData("http://127.0.0.1:3001/api/v1/items")).data;
+      const found = savedItems.find((item) => item.code == scannedBarcode);
+      console.log(found);
     });
   };
   const handleCodeChange = (event) => {
     setScannedBarcode(event.target.value);
+  };
+  const handleItemNameChange = (event) => {
+    setItemName(event.target.value);
+  };
+
+  const addItem = async () => {
+    const item = 
+      {
+        name: itemName,
+        description: "",
+        type: itemType,
+        location: "",
+        code: scannedBarcode,
+        // eslint-disable-next-line camelcase
+        created_at: new Date(),
+        // eslint-disable-next-line camelcase
+        updated_at: new Date()
+      
+      };
+    const response = await postData("http://127.0.0.1:3001/api/v1/items", item);
+    return response;
   };
   return (
     <>
@@ -93,16 +117,16 @@ const Scan = () => {
       <Navbar />
       <Typography variant="h3" textAlign="center">Scan a barcode</Typography>
       <Box id="scan-box" sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}></Box>
-      {barcodeDetected ?
+      {barcodeDetected &&
         <>
           <form>
             <TextField label="Code" variant="filled" fullWidth value={scannedBarcode} onChange={handleCodeChange} sx={{ marginBottom: "10px" }} />
             <TextField label="Format" variant="filled" fullWidth value={barcodeFormat} sx={{ marginTop: "10px", marginBottom: "10px" }} />
-            <Button variant="contained" onClick={() => getBarcodeInfo(scannedBarcode)} sx={{ marginBottom: "10px" }}><InfoIcon /> Get code details</Button>
+            <TextField label="Name" variant="filled" fullWidth value={itemName} onChange={handleItemNameChange} sx={{ marginTop: "10px", marginBottom: "10px" }} />
+            <Button variant="contained" onClick={() => addItem()} sx={{ marginBottom: "10px" }}><Add/> Add item</Button>
           </form>
         </>
-        :
-        ""}
+      }
       <Button variant="contained" fullWidth onClick={isScanActive ? stopScan : scan}><DocumentScannerIcon /> {isScanActive ? "Stop scan" : "Scan"}</Button>
     </>
   );
