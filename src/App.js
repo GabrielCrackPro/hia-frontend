@@ -17,14 +17,13 @@ export const darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#fff"
-    }
-  }
+      main: "#fff",
+    },
+  },
 });
 
-
-
-function App () {
+// eslint-disable-next-line space-before-function-paren
+function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
@@ -36,6 +35,7 @@ function App () {
       <Route path="/settings" element={<Settings />} />
       <Route path="/actions" element={<Actions />} />
       <Route path="/new/:type" element={<CreateForm />} />
+      <Route path="/edit/:type/:id" element={<CreateForm />} />
       <Route path="/scan" element={<Scan />} />
     </Routes>
   );

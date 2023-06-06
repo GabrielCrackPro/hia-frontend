@@ -5,7 +5,7 @@ import Navbar from "../../Navbar/Navbar";
 import Titlebar from "../../Titlebar/TitleBar";
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { getBarcodeInfo, getData, postData } from "../../../utils";
+import { getData, postData } from "../../../utils";
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import "./Scan.css";
 import { Add } from "@mui/icons-material";

@@ -2,7 +2,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import "./index.css";
 import App, { darkTheme, lightTheme } from "./App";
@@ -13,19 +12,17 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { CustomThemeProvider } from "./components/CustomThemeProvider/CustomThemeProvider";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <CustomThemeProvider theme={darkTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <App />
       </CustomThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
