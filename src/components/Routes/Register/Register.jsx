@@ -19,7 +19,9 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [displayname, setDisplayname] = useState("");
   const [password, setPassword] = useState("");
-  const [profilePicture, setProfilePicture] = useState("../../../img/default-profile-picture.png");
+  const [profilePicture, setProfilePicture] = useState(
+    "../../../img/default-profile-picture.png"
+  );
 
   const handlePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -47,26 +49,47 @@ const Register = () => {
       // eslint-disable-next-line camelcase
       created_at: new Date(),
       // eslint-disable-next-line camelcase
-      updated_at: new Date()
+      updated_at: new Date(),
     };
     (async () => {
-      const response = await postData("http://127.0.0.1:3001/api/v1/users", newUser);
+      const response = await postData("users", newUser);
       if (response.message == "User created successfully") {
         location.pathname = "/";
       }
     })();
-
   };
   return (
     <>
       <Titlebar />
       <ZoomIn>
-        <Box sx={{ marginTop: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
+        <Box
+          sx={{
+            marginTop: "10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <AppIcon size="large" />
           <Typography variant="h4">Create Account</Typography>
           <form onSubmit={handleSubmit}>
-            <TextField variant="filled" label="Username" fullWidth value={username} onChange={handleUsernameChange} sx={{ marginBottom: "10px" }} />
-            <TextField variant="filled" label="Display Name" fullWidth value={displayname} onChange={handleDisplaynameChange} sx={{ marginBottom: "10px" }} />
+            <TextField
+              variant="filled"
+              label="Username"
+              fullWidth
+              value={username}
+              onChange={handleUsernameChange}
+              sx={{ marginBottom: "10px" }}
+            />
+            <TextField
+              variant="filled"
+              label="Display Name"
+              fullWidth
+              value={displayname}
+              onChange={handleDisplaynameChange}
+              sx={{ marginBottom: "10px" }}
+            />
             <FormControl variant="filled" fullWidth>
               <TextField
                 label="Password"
@@ -77,15 +100,36 @@ const Register = () => {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <Button onClick={handlePasswordVisibility}>{passwordVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}</Button>
+                      <Button onClick={handlePasswordVisibility}>
+                        {passwordVisible ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </Button>
                     </InputAdornment>
                   ),
                 }}
                 variant="filled"
               />
             </FormControl>
-            <Button type="submit" variant="contained" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
-            <Button type="button" href="/" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><LoginIcon /> Login</Button>
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              sx={{ marginTop: "10px" }}
+            >
+              <AddIcon /> Create Account
+            </Button>
+            <Button
+              type="button"
+              href="/"
+              variant="outlined"
+              fullWidth
+              sx={{ marginTop: "10px" }}
+            >
+              <LoginIcon /> Login
+            </Button>
           </form>
         </Box>
       </ZoomIn>

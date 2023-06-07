@@ -30,70 +30,107 @@ const Login = () => {
     event.preventDefault();
     const user = {
       username,
-      password
+      password,
     };
-    (
-      async () => {
-        const response = await postData("http://127.0.0.1:3001/api/v1/users/login", user);
-        if (response.message == "User logged in successfully") {
-          const userDB = response.user;
-          localStorage.setItem("USER", JSON.stringify(userDB));
-          location.pathname = "/home";
-        } else if (username == "") {
-          setUserInputError(true);
-          setUsernameLabel("Incorrect Username");
-          setTimeout(() => {
-            setUserInputError(false);
-            setUsernameLabel("Username");
-          }, 1500);
-        } if (password == "") {
-          setPasswordInputError(true);
-          setPasswordLabel("Incorrect Password");
-          setTimeout(() => {
-            setPasswordInputError(false);
-            setPasswordLabel("Password");
-          }, 1500);
-        } if (username == "" && password == "") {
-          setUserInputError(true);
-          setPasswordInputError(true);
+    (async () => {
+      const response = await postData("users/login", user);
+      if (response.message == "User logged in successfully") {
+        const userDB = response.user;
+        localStorage.setItem("USER", JSON.stringify(userDB));
+        location.pathname = "/home";
+      } else if (username == "") {
+        setUserInputError(true);
+        setUsernameLabel("Incorrect Username");
+        setTimeout(() => {
+          setUserInputError(false);
+          setUsernameLabel("Username");
+        }, 1500);
+      }
+      if (password == "") {
+        setPasswordInputError(true);
+        setPasswordLabel("Incorrect Password");
+        setTimeout(() => {
+          setPasswordInputError(false);
+          setPasswordLabel("Password");
+        }, 1500);
+      }
+      if (username == "" && password == "") {
+        setUserInputError(true);
+        setPasswordInputError(true);
 
-          setUsernameLabel("Incorrect Username");
-          setPasswordLabel("Incorrect Password");
+        setUsernameLabel("Incorrect Username");
+        setPasswordLabel("Incorrect Password");
 
-          setTimeout(() => {
-            setUserInputError(false);
-            setPasswordInputError(false);
+        setTimeout(() => {
+          setUserInputError(false);
+          setPasswordInputError(false);
 
-            setUsernameLabel("Username");
-            setPasswordLabel("Password");
-          }, 1500);
-        } if (response.message == "User does not exists") {
-          setUserInputError(true);
-          setPasswordInputError(true);
-          setUsernameLabel("Incorrect Username");
-          setPasswordLabel("Incorrect Password");
-          setTimeout(() => {
-            setUserInputError(false);
-            setPasswordInputError(false);
-            setUsernameLabel("Username");
-            setPasswordLabel("Password");
-          }, 1500);
-        }
-      })();
+          setUsernameLabel("Username");
+          setPasswordLabel("Password");
+        }, 1500);
+      }
+      if (response.message == "User does not exists") {
+        setUserInputError(true);
+        setPasswordInputError(true);
+        setUsernameLabel("Incorrect Username");
+        setPasswordLabel("Incorrect Password");
+        setTimeout(() => {
+          setUserInputError(false);
+          setPasswordInputError(false);
+          setUsernameLabel("Username");
+          setPasswordLabel("Password");
+        }, 1500);
+      }
+    })();
   };
 
   return (
     <>
       <Titlebar />
       <ZoomIn>
-        <Box display="flex" flexDirection="column" marginTop="20px" alignItems="center" justifyContent="center">
+        <Box
+          display="flex"
+          flexDirection="column"
+          marginTop="20px"
+          alignItems="center"
+          justifyContent="center"
+        >
           <AppIcon size="large" />
           <Typography variant="h5">Login</Typography>
           <form onSubmit={handleSubmit}>
-            <TextField variant="filled" label={usernameLabel} fullWidth onChange={handleUsernameChange} error={userInputError} />
-            <TextField variant="filled" label={passwordLabel} type="password" sx={{ marginTop: "15px" }} fullWidth onChange={handlePasswordChange} error={passwordInputError} />
-            <Button variant="contained" type="submit" fullWidth sx={{ marginTop: "15px" }}><LoginIcon /> Login</Button>
-            <Button type="button" href="/register" variant="outlined" fullWidth sx={{ marginTop: "10px" }}><AddIcon /> Create Account</Button>
+            <TextField
+              variant="filled"
+              label={usernameLabel}
+              fullWidth
+              onChange={handleUsernameChange}
+              error={userInputError}
+            />
+            <TextField
+              variant="filled"
+              label={passwordLabel}
+              type="password"
+              sx={{ marginTop: "15px" }}
+              fullWidth
+              onChange={handlePasswordChange}
+              error={passwordInputError}
+            />
+            <Button
+              variant="contained"
+              type="submit"
+              fullWidth
+              sx={{ marginTop: "15px" }}
+            >
+              <LoginIcon /> Login
+            </Button>
+            <Button
+              type="button"
+              href="/register"
+              variant="outlined"
+              fullWidth
+              sx={{ marginTop: "10px" }}
+            >
+              <AddIcon /> Create Account
+            </Button>
           </form>
         </Box>
       </ZoomIn>

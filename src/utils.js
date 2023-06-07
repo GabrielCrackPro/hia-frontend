@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:3001/api/v1/",
+  // baseURL: "http://127.0.0.1:3001/api/v1/",
+  baseURL: "https://hia-api.onrender.com/api/v1",
+
   headers: {
     // "Access-Control-Allow-Origin": "https://127.0.0.1:3001/",
     "Access-Control-Allow-Origin": "https://hia-api.onrender.com",

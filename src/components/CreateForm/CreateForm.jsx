@@ -96,20 +96,14 @@ const CreateForm = () => {
         }, 1500);
       } else {
         (async () => {
-          const response = await postData(
-            "http://127.0.0.1:3001/api/v1/items",
-            item
-          );
+          const response = await postData("items", item);
           if (response.message == "Item created successfully") {
             setAlertSeverity("success");
             setAlertMessage(`${response.item.name} added successfully`);
             loggedUser.items.push(item);
             loggedUser.actions.push(action);
             localStorage.setItem("USER", JSON.stringify(loggedUser));
-            putData(
-              `users/${loggedUser["_id"]}`,
-              loggedUser
-            );
+            putData(`users/${loggedUser["_id"]}`, loggedUser);
             setTimeout(() => (location.pathname = "/home"), 1500);
           } else {
             setAlertSeverity("error");
@@ -274,20 +268,14 @@ const CreateForm = () => {
         }, 1500);
       } else {
         (async () => {
-          const response = await postData(
-            "http://127.0.0.1:3001/api/v1/shops",
-            shop
-          );
+          const response = await postData("shops", shop);
           if (response.message == "Shop created successfully") {
             setAlertSeverity("success");
             setAlertMessage(`${response.shop.name} added successfully`);
             loggedUser.shops.push(shop);
             loggedUser.actions.push(action);
             localStorage.setItem("USER", JSON.stringify(loggedUser));
-            putData(
-              `users/${loggedUser["_id"]}`,
-              loggedUser
-            );
+            putData(`users/${loggedUser["_id"]}`, loggedUser);
             setTimeout(() => (location.pathname = "/home"), 1500);
           } else {
             setIsAlertShown(true);
@@ -446,20 +434,14 @@ const CreateForm = () => {
         }, 1500);
       } else {
         (async () => {
-          const response = await postData(
-            "http://127.0.0.1:3001/api/v1/locations",
-            location
-          );
+          const response = await postData("locations", location);
           if (response.message == "Location created successfully") {
             setAlertSeverity("success");
             setAlertMessage(`${response.location.name} added successfully`);
             loggedUser.locations.push(location);
             loggedUser.actions.push(action);
             localStorage.setItem("USER", JSON.stringify(loggedUser));
-            putData(
-              `users/${loggedUser["_id"]}`,
-              loggedUser
-            );
+            putData(`users/${loggedUser["_id"]}`, loggedUser);
             setTimeout(() => (window.location.pathname = "/home"), 1500);
           } else {
             setIsAlertShown(true);
