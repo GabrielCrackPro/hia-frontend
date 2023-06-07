@@ -3,7 +3,8 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "http://127.0.0.1:3001/api/v1/",
   headers: {
-    "Access-Control-Allow-Origin": "https://127.0.0.1:3001/",
+    // "Access-Control-Allow-Origin": "https://127.0.0.1:3001/",
+    "Access-Control-Allow-Origin": "https://hia-api.onrender.com",
     "Content-Type": "application/json",
   },
 });
@@ -31,11 +32,4 @@ const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export {
-  api,
-  getData,
-  postData,
-  putData,
-  deleteOne,
-  capitalize,
-};
+export { api, getData, postData, putData, deleteOne, capitalize };
