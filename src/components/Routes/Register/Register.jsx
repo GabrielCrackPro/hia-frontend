@@ -108,6 +108,7 @@ const Register = () => {
                 value={password}
                 onChange={handlePasswordChange}
                 type={passwordVisible ? "text" : "password"}
+                sx={{ marginBottom: "10px" }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
