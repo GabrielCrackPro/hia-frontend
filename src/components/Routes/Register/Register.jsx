@@ -16,9 +16,11 @@ import { ZoomIn } from "../../Animation/Animation";
 
 const Register = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordConfirmVisible, setPasswordConfirmVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [displayname, setDisplayname] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [profilePicture, setProfilePicture] = useState(
     "../../../img/default-profile-picture.png"
   );
@@ -26,12 +28,18 @@ const Register = () => {
   const handlePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+  const handlePasswordConfirmVisibility = () => {
+    setPasswordConfirmVisible(!passwordConfirmVisible);
+  };
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+  };
+  const handlePasswordConfirmChange = (event) => {
+    setPasswordConfirm(event.target.value);
   };
   const handleDisplaynameChange = (event) => {
     setDisplayname(event.target.value);
@@ -41,6 +49,9 @@ const Register = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (password !== passwordConfirm) {
+      return;
+    }
     const newUser = {
       username,
       displayname,
@@ -102,6 +113,27 @@ const Register = () => {
                     <InputAdornment position="end">
                       <Button onClick={handlePasswordVisibility}>
                         {passwordVisible ? (
+                          <VisibilityOffIcon />
+                        ) : (
+                          <VisibilityIcon />
+                        )}
+                      </Button>
+                    </InputAdornment>
+                  ),
+                }}
+                variant="filled"
+              />
+              <TextField
+                label="Confirm password"
+                fullWidth
+                value={passwordConfirm}
+                onChange={handlePasswordConfirmChange}
+                type={passwordConfirmVisible ? "text" : "password"}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button onClick={handlePasswordConfirmVisibility}>
+                        {passwordConfirmVisible ? (
                           <VisibilityOffIcon />
                         ) : (
                           <VisibilityIcon />
